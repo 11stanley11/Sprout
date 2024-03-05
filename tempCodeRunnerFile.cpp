@@ -1,13 +1,4 @@
- if(!flag) {
-                    node -> next = NULL;
-                    head = node;
-                    tail = node;
-                    flag = true;
-                }else if(ppl[id] == -1 || group_tail[ppl[id]] == NULL) {
-                    node -> next = NULL;
-                    tail -> next = node;
-                    tail = node;
-                }else{
-                    node -> next = group_tail[ppl[id]] -> next;
-                    group_tail[ppl[id]] -> next = node;
-                }
+print_list_head(line[0]);
+    // cout << endl;
+    // print_list_tail(line[n+1]);
+    // cout << endl;
