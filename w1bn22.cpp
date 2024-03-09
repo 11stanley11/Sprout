@@ -16,7 +16,12 @@ using namespace std;
 #define debug(x) cerr<<#x<<":"<<x<<endl;
 #define debuq(x) cerr<<"debug:"<<#x<<endl;
 
+#define INPUT // annotate before submitting
+
 int main() {
+    #ifdef INPUT
+        freopen("input.in", "r", stdin);
+    #endif
     boost;
     
     

@@ -1,5 +1,4 @@
 *.exe
 *tempCodeRunnerFile.cpp
 *test.cpp
-*data.in
-*data.out
+*input.in
