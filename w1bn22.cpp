@@ -1,3 +1,4 @@
+// https://neoj.sprout.tw/problem/22/
 #pragma GCC optimize ("O2")
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("Ofast")
@@ -20,7 +21,11 @@ int main()
 {
     boost;
     
-    
+    int t, n;
+    cin >> t;
+    while(t--) {
+        
+    }
     
     return 0;
 }
