@@ -5,7 +5,7 @@
 using namespace std;
 #define fo(j,s,n) for(int i=j;i<n;i+=s)
 #define pb push_back
-#define int long long
+#define ll long long
 #define endl '\n'
 #define pii pair<int,int>
 #define mpii(a, b) make_pair(a, b)
@@ -16,8 +16,7 @@ using namespace std;
 #define debug(x) cerr<<#x<<":"<<x<<endl;
 #define debuq(x) cerr<<"debug:"<<#x<<endl;
 
-int main()
-{
+int main() {
     boost;
     
     

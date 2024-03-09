@@ -1,4 +1,3 @@
-// https://neoj.sprout.tw/problem/22/
 #pragma GCC optimize ("O2")
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("Ofast")
@@ -6,7 +5,7 @@
 using namespace std;
 #define fo(j,s,n) for(int i=j;i<n;i+=s)
 #define pb push_back
-#define int long long
+#define ll long long
 #define endl '\n'
 #define pii pair<int,int>
 #define mpii(a, b) make_pair(a, b)
@@ -17,15 +16,10 @@ using namespace std;
 #define debug(x) cerr<<#x<<":"<<x<<endl;
 #define debuq(x) cerr<<"debug:"<<#x<<endl;
 
-int main()
-{
+int main() {
     boost;
     
-    int t, n;
-    cin >> t;
-    while(t--) {
-        
-    }
+    
     
     return 0;
 }
