@@ -1,9 +1,10 @@
+// https://neoj.sprout.tw/problem/22/
 #pragma GCC optimize ("O2")
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("Ofast")
 #include <bits/stdc++.h>
 using namespace std;
-#define rep(v, i, n, s) for(int v = i; v < n; v += s)
+#define rep(v, i, n, s) for(int v = i; s > 0 ? v < n : v > n; v += s)
 #define pb push_back
 #define ll long long
 #define endl '\n'
@@ -46,7 +47,7 @@ int main() {
             lr[stk.top()] = -1;
             stk.pop();
         }
-        rep(i, 0, n, 1) {
+        rep(i, n-1, -1, -1) {
             while(!stk.empty() && stk.top() < arr[i]) {
                 lr[stk.top()] = i;
                 stk.pop();
@@ -57,6 +58,7 @@ int main() {
             lr[stk.top()] = -1;
             stk.pop();
         }
+
     }
     
     return 0;
