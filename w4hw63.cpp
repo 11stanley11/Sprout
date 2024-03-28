@@ -1,4 +1,4 @@
-// https://neoj.sprout.tw/problem/22/
+// https://neoj.sprout.tw/problem/63
 #pragma GCC optimize ("O2")
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("Ofast")
@@ -18,20 +18,41 @@ using namespace std;
 #define debuq(x) cerr<<"debug:"<<#x<<endl;
 #define input freopen("input.in", "r", stdin)
 
-const int MAXN = 1000000;
-int arr[MAXN];
+int n, t;
+int arr[13];
+vector<int> now;
+vector<bool> use(13, false);
+void f(int lst = 0) {//output now
+    if (now.size() == 6) {
+        rep(i, 0, now.size(), 1) {
+            cout << arr[now[i]];
+            if(i != now.size() - 1) cout << " ";
+        }
+        cout << endl;
+        return ;
+    } 
+    rep(i, lst, n, 1) {
+        if(use[i]) continue;
+        use[i] = true;
+        now.pb(i);
+        f(i);
+        now.pop_back();
+        use[i] = false;
+    }
+}
 
 int main() {
     // input; // annotate before submitting
     boost;
     
-    int t, n, sum;
     cin >> t;
     while(t--) {
         cin >> n;
         rep(i, 0, n, 1) {
             cin >> arr[i];
         }
-    }    
+        f();
+    }
+    
     return 0;
 }
