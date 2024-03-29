@@ -92,7 +92,6 @@ int main() {
                 grid[i][j] = int(c)-'0';
                 if(!(rowChoices[i][int(c)-'0'-1] && colChoices[j][int(c)-'0'-1] && boxChoices[i/N][j/N][int(c)-'0'-1])) {
                     invalid = true;
-                    break;
                 }
                 rowChoices[i][int(c)-'0'-1] = false;
                 colChoices[j][int(c)-'0'-1] = false;
