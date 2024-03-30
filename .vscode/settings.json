@@ -19,6 +19,16 @@
         "span": "cpp",
         "stacktrace": "cpp",
         "regex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "*.tcc": "cpp",
+        "charconv": "cpp",
+        "expected": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp"
     }
 }

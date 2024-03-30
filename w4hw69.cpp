@@ -6,7 +6,7 @@
 using namespace std;
 #define rep(v, i, n, s) for(int v = i; s > 0 ? v < n : v > n; v += s)
 #define pb push_back
-#define ll long long
+#define int long long
 #define endl '\n'
 #define pii pair<long,long>
 #define mpii(a, b) make_pair(a, b)
@@ -20,67 +20,89 @@ using namespace std;
 
 const int MAXN = 10000;
 pii mh[MAXN];
-ll oh[MAXN];
-ll t, n, k, m, sum, midx, oidx, pass;
+vector<int> mh0;
+int oh[MAXN];
 
-bool sortComp(pii a, pii b) {
-    return a.ff >= b.ff && a.ss <= b.ss;
+int binary_search(int value, int left, int right) {
+    if(left == right - 1) return right;
+    int mid = (left + right) / 2;
+    if(oh[mid] >= value) {
+        return binary_search(value, mid, right);
+    }else{
+        return binary_search(value, left, mid);
+    }
 }
 
-// bool comp(int a) {
-//     return l[a].ff > l[a].ss;
-// }
-
-// int binary_search(int left = -1, int right = n) {
-//     if(left == right - 1) return right;
-//     int mid = (left + right) / 2;
-//     if(comp(mid)) {
-//         return binary_search(mid, right);
-//     }else{
-//         return binary_search(left, mid);
-//     }
-// }
-
-int main() {
+int32_t main() {
     // input; // annotate before submitting
     boost;
     
+    int t, n, k, m, lst, pass, h, v, cur, mhlen, ohlen;
     cin >> t;
     while(t--) {
-        sum = 0;
+        mh0 = vector<int>();
         cin >> n >> k;
         rep(i, 0, n, 1) {
-            cin >> mh[i].ff >> mh[i].ss;
-            if(mh[i].ss > 0) sum++;
+            cin >> h >> v;
+            if(v > 0) {
+                mh[i] = {h, v};
+            }else{
+                mh0.pb(h);
+                mh[i] = {-1, 0};
+            } 
         }
         rep(i, 0, n, 1) {
             cin >> oh[i];
         }
-        sort(oh, oh + n, greater<int>());
+        mhlen = n - mh0.size();
+        ohlen = n;
+        oh[n] = -1;
+        sort(mh, mh + n, greater<pii>());
+        sort(all(mh0), greater<int>());
+        sort(oh, oh + n + 1, greater<int>());
+        mh[mhlen] = {-1, 0};
+        lst = -1;
+        rep(i, 0, mh0.size(), 1) {
+            if(lst >= n) {
+                ohlen = n - i;
+                break;
+            }
+            lst = binary_search(mh0[i], lst, n+1);
+            if(lst >= n) {
+                ohlen = n - i;
+                break;
+            }
+            oh[lst] = -1;
+            // cout << lst;
+            lst++;
+            k--;
+        }
+        sort(oh, oh + n + 1, greater<int>());
         m = 0;
+        if(mhlen < k) {
+            cout << -1 << endl;   
+            continue;    
+        }
         while(1) {
-            sort(mh, mh + n, greater<pii>());
-            midx = 0;
-            oidx = 0;
+            sort(mh, mh + mhlen, greater<pii>());
             pass = 0;
-            while(oidx != n && midx != n) {
-                if(mh[midx].ff > oh[oidx]) {
-                    pass++;
-                    oidx++;
-                    midx++;
-                }else{
-                    oidx++;
-                }
-            } 
+            lst = -1;
+            rep(i, 0, mhlen, 1) {
+                if(lst >= ohlen) break;
+                lst = binary_search(mh[i].ff, lst, ohlen + 1);
+                if(lst >= ohlen) break;
+                lst++;
+                pass = i + 1;
+            }
             if(pass >= k) {
                 cout << m << endl;
-                break;
-            }else if(sum < k){
-                cout << -1 << endl;
+                // rep(i, 0, mhlen, 1) {
+                //     cout << mh[i].ff;
+                // }
                 break;
             }else{
                 m++;
-                rep(i, 0, n, 1) {
+                rep(i, 0, mhlen, 1) {
                     mh[i].ff+=mh[i].ss;
                 }
             }
