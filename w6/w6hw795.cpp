@@ -1,4 +1,3 @@
-// https://neoj.sprout.tw/problem/795/
 #pragma GCC optimize ("O2")
 #pragma GCC optimize ("O3")
 #pragma GCC optimize ("Ofast")
@@ -18,9 +17,8 @@ using namespace std;
 #define debuq(x) cerr<<"debug:"<<#x<<endl;
 #define input freopen("../input.in", "r", stdin)
 
-const int MAXN = 2e5;
 const int INF = __LONG_LONG_MAX__;
-vector<pii> xy(MAXN), tmp(MAXN);
+vector<pii> xy, tmp;
 
 bool comp(pii a, pii b) {
     return a.ss < b.ss;
@@ -35,15 +33,14 @@ int dc(int left,int right) { // [l, r] 得是左閉又閉
     int mid = (left + right) / 2;
     int mid_x = xy[mid].ff;
     int mini = min(dc(left, mid), dc(mid+1, right));
+    tmp.assign(right - left + 1, {0, 0});
     merge(xy.begin() + left, xy.begin() + mid + 1, xy.begin() + mid + 1, xy.begin() + right + 1, tmp.begin(), comp);
     rep(i, left, right + 1, 1) xy[i] = tmp[i-left];
-    int len = 0;
+    tmp.clear();
     rep(i, left, right + 1, 1) {
-        if(abs(xy[i].ff - mid_x) <= mini) {
-            tmp[i-left] = xy[i];
-            len++;
-        }
+        if((xy[i].ff - mid_x) * (xy[i].ff - mid_x) <= mini) tmp.pb(xy[i]);
     }
+    int len = tmp.size();
     rep(i, 0, len, 1) {
         rep(j, i + 1, len, 1) {
             mini = min(mini, cal(tmp[i], tmp[j])); // 放在y判斷前較保守，反正複雜度不變
@@ -59,6 +56,7 @@ signed main() {
     
     int n;
     cin >> n;
+    xy.assign(n, {0, 0});
     rep(i, 0, n, 1) {
         cin >> xy[i].ff >> xy[i].ss;
     }
