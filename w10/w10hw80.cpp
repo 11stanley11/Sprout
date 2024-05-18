@@ -36,8 +36,6 @@ struct SegTree {
         int mid = (l + r) / 2;
         build(cur*2 + 1, l, mid);
         build(cur*2 + 2, mid, r);
-        seg[cur].l = l;
-        seg[cur].r = r;
         seg[cur].v = min(seg[cur*2 + 1].v, seg[cur*2 + 2].v);
     }
     void update(int cur, int pos, int val) {
